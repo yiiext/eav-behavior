@@ -1,5 +1,5 @@
-CEavBehaviour
-=============
+EAV behavior
+============
 
 Allows model to work with custom fields on the fly (EAV pattern).
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `eavAttr` (
 function behaviors() {
     return array(
         'eavAttr' => array(
-            'class' => 'ext.CEavBehavior.CEavBehavior',
+            'class' => 'ext.yiiext.behaviors.model.eav.EEavBehavior',
             // Table that stores attributes (required)
             'tableName' => 'eavAttr',
             // model id column

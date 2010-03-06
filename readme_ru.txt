@@ -1,5 +1,5 @@
-CEavBehaviour
-=============
+EAV behavior
+============
 
 Добавляет модели возможность работать с eav-моделью данных.
 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `eavAttr` (
 function behaviors() {
     return array(
         'eavAttr' => array(
-            'class' => 'ext.CEavBehavior.CEavBehavior',
+            'class' => 'ext.yiiext.behaviors.model.eav.EEavBehavior',
             // Имя таблицы для аттрибутов (обязательное свойство)
             'tableName' => 'eavAttr',
             // Имя столбца где хранится ид объекта.

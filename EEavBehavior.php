@@ -1,16 +1,16 @@
 <?php
 /**
- * CEavBehavior class file.
+ * EEavBehavior class file.
  *
  * Entity-Attribute-Value behavior.
  * Allows model to work with custom fields on the fly (EAV pattern).
  *
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
- * @link http://code.google.com/p/yiiext/wiki/CEavBehavior
+ * @link http://code.google.com/p/yiiext/
  *
  * @version 0.4
  */
-class CEavBehavior extends CActiveRecordBehavior {
+class EEavBehavior extends CActiveRecordBehavior {
     /**
      * @access public
      * @var string name of the table where data is stored. Required to be set on init behavior.
@@ -136,7 +136,7 @@ class CEavBehavior extends CActiveRecordBehavior {
             // If property modelTableFk not set, trying to get a primary key from model table.
             $this->modelTableFk = $this->getOwner()->getTableSchema()->primaryKey;
             if(!is_string($this->modelTableFk)) {
-                throw new CException(Yii::t('yii', 'Table "{table}" does not have a primary key defined.',
+                throw new CException(Yii::t('yiiext', 'Table "{table}" does not have a primary key defined.',
                     array('{table}' => $this->getOwner()->getTableSchema())));
             }
         }
