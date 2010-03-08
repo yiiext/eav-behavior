@@ -235,8 +235,10 @@ class EEavBehavior extends CActiveRecordBehavior {
      * @return void
      */
     public function afterSave($event) {
+        // TODO afterSave не срабатывает если модель не была изменена
+        
         // Save changed attributes.
-        if ($this->changedAttributes->count() > 0) {
+        if ($this->changedAttributes->count > 0) {
             $this->saveEavAttributes($this->changedAttributes->toArray());
         }
         // Call parent method for convenience.
@@ -400,18 +402,16 @@ class EEavBehavior extends CActiveRecordBehavior {
             if ($this->hasSafeAttribute($attribute)) {
                 $values[$attribute] = $this->attributes->itemAt($attribute);
                 // If attribute not set and not load, prepare array for loaded.
-                if (!$this->preload && is_null($values[$attribute])) {
+                if (!$this->preload && $values[$attribute] === NULL) {
                     $loadQueue->add($attribute);
                 }
             }
         }
         // If array for loaded not empty, load attributes.
         if (!$this->preload && $loadQueue->count() > 0) {
-            $this->loadEavAttributes($loadQueue);
+            $this->loadEavAttributes($loadQueue->toArray());
             foreach ($loadQueue as $attribute) {
-                if ($this->hasSafeAttribute($attribute)) {
-                    $values[$attribute] = $this->attributes->itemAt($attribute);
-                }
+                $values[$attribute] = $this->attributes->itemAt($attribute);
             }
         }
         // Delete load queue.
