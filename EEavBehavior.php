@@ -8,7 +8,7 @@
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
  * @link http://code.google.com/p/yiiext/
  *
- * @version 0.4
+ * @version 0.5
  */
 class EEavBehavior extends CActiveRecordBehavior {
     /**
@@ -26,7 +26,7 @@ class EEavBehavior extends CActiveRecordBehavior {
     public $attributesPrefix = '';
 
     /**
-     * @access protected 
+     * @access protected
      * @var string owner model FK name. If not set automatically assign to model's primaryKey.
      * @default ''
      */
@@ -98,7 +98,7 @@ class EEavBehavior extends CActiveRecordBehavior {
     /**
      * Returns owner model id.
      * @access protected
-     * @return mixed 
+     * @return mixed
      */
     protected function getModelId() {
         return $this->getOwner()->{$this->getModelTableFk()};
@@ -123,7 +123,7 @@ class EEavBehavior extends CActiveRecordBehavior {
             $this->modelTableFk = $modelTableFk;
         }
     }
-    
+
     /**
      * Returns owner model FK name.
      * @access protected
@@ -186,7 +186,7 @@ class EEavBehavior extends CActiveRecordBehavior {
         }
         return TRUE;
     }
-    
+
     /**
      * @return void
      */
@@ -236,7 +236,7 @@ class EEavBehavior extends CActiveRecordBehavior {
      */
     public function afterSave($event) {
         // TODO afterSave не срабатывает если модель не была изменена
-        
+
         // Save changed attributes.
         if ($this->changedAttributes->count > 0) {
             $this->saveEavAttributes($this->changedAttributes->toArray());
@@ -373,7 +373,7 @@ class EEavBehavior extends CActiveRecordBehavior {
         // Return model.
         return $this->getOwner();
     }
-    
+
     /**
      * @param string attribute key.
      * @param mixed attribute value.
