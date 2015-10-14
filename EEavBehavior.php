@@ -481,9 +481,19 @@ class EEavBehavior extends CActiveRecordBehavior {
      * @return CDbCommand
      */
     protected function getDeleteCommand($attributes = array()) {
+        $criteria = $this->getDeleteEavAttributesCriteria($attributes);
+        // First param is entity id and no need for prefix
+        $first = true;
+        foreach ($criteria->params as $index => $param) {
+            if($first) {
+                $first = false;
+                continue;
+            }
+            $criteria->params[$index] = $this->attributesPrefix . $param;
+        }
         return $this->getOwner()
             ->getCommandBuilder()
-            ->createDeleteCommand($this->tableName, $this->getDeleteEavAttributesCriteria($attributes));
+            ->createDeleteCommand($this->tableName, $criteria);
     }
 
     /**
